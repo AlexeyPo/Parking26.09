@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Zver
@@ -11,7 +12,25 @@
     <title>Home</title>
 </head>
 <body>
-<jsp:useBean id="user" type="beans.User" scope="session"/>
-<h1>Hello, ${user.login}</h1>
+
+
+
+
+<jsp:useBean id="user" class="beans.User" scope="session"/>
+<c:if test="${user.id > 0}">
+    <jsp:useBean id="theCustomerDAO" class="dao.CustomerDAO" scope="session"/>
+    <c:set var="customers" value="${theCustomerDAO.findAllCustomers()}" scope="session"/>
+    <c:forEach items="${customers}" var="customer" varStatus="loop">
+        <td>${customer.id}</td>
+        <td>${customer.firstName}</td>
+        <td>${customer.lastName}</td>
+        <td>${customer.phone}</td>
+    </c:forEach>
+
+
+    <form action="signout.html">
+        <input type="submit" value="SignOut">
+    </form>
+</c:if>
 </body>
 </html>

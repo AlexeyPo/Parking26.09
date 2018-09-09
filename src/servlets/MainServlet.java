@@ -1,4 +1,4 @@
-package server;
+package servlets;
 
 import beans.LoginBean;
 import beans.User;

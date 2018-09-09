@@ -20,11 +20,6 @@
         <input type="submit" name="button" value="Sign In">
     </form>
 </c:if>
-<c:if test="${user.id > 0}">
-    <h1>${user.login}</h1>
-    <form action="signout.html">
-        <input type="submit" value="SignOut">
-    </form>
-</c:if>
+
 </body>
 </html>
