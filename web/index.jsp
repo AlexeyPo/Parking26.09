@@ -17,7 +17,6 @@
     <form action="login.html" method="post">
         <input type="text" name="login" title="login" required >
         <input type="password" name="password" title="password">
-        <input type="submit" name="button" value="Register">
         <input type="submit" name="button" value="Sign In">
     </form>
 </c:if>
