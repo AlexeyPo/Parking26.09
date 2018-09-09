@@ -967,37 +967,119 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="243" parent="5" name="user"/>
-    <column id="244" parent="243" name="id">
+    <table id="243" parent="5" name="car"/>
+    <table id="244" parent="5" name="customer"/>
+    <table id="245" parent="5" name="user"/>
+    <column id="246" parent="243" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="245" parent="243" name="login">
+    <column id="247" parent="243" name="make">
+      <Position>2</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="248" parent="243" name="model">
+      <Position>3</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="249" parent="243" name="car_number">
+      <Position>4</Position>
+      <DataType>varchar(45)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="250" parent="243" name="customer_id">
+      <Position>5</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="251" parent="243" name="customer_id">
+      <ColNames>customer_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="252" parent="243" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="253" parent="243" name="customer_id">
+      <ColNames>customer_id</ColNames>
+      <RefSchemaName>parking</RefSchemaName>
+      <RefTableName>customer</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="254" parent="244" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="255" parent="244" name="first_name">
+      <Position>2</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="256" parent="244" name="last_name">
+      <Position>3</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="257" parent="244" name="phone">
+      <Position>4</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="258" parent="244" name="id">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="259" parent="244" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="260" parent="245" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="261" parent="245" name="login">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="246" parent="243" name="password">
+    <column id="262" parent="245" name="password">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="247" parent="243" name="User_login_uindex">
+    <index id="263" parent="245" name="User_login_uindex">
       <ColNames>login</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="248" parent="243" name="PRIMARY">
+    <key id="264" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="249" parent="243" name="User_login_uindex">
+    <key id="265" parent="245" name="User_login_uindex">
       <ColNames>login</ColNames>
       <UnderlyingIndexName>User_login_uindex</UnderlyingIndexName>
     </key>
