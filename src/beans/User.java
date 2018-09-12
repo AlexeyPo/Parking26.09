@@ -4,6 +4,22 @@ public class User {
     private int id;
     private String login;
     private String password;
+    private String firstName;
+    private String lastName;
+    private String phone;
+    private boolean active;
+
+    private Parking parking;
+
+    public User(int id, String login, String password, String firstName, String lastName, String phone, boolean active) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.active = active;
+    }
 
     public User(int id, String login, String password) {
         this.id = id;
@@ -36,5 +52,45 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Parking getParking() {
+        return parking;
+    }
+
+    public void setParking(Parking parking) {
+        this.parking = parking;
     }
 }
