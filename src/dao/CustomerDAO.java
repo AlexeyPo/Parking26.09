@@ -2,6 +2,9 @@ package dao;
 
 import beans.Customer;
 
+import javax.annotation.Resource;
+import javax.ejb.Stateless;
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,21 +12,22 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+@Stateless
 public class CustomerDAO {
 
-    private Connection connection;
+    @Resource(mappedName = "jdbc/parking")
+    DataSource ds;
 
-    public CustomerDAO(Connection connection){
-        this.connection = connection;
-    }
-
-    public List<Customer> findAllCustomers(){
+    public List<Customer> getAllCustomers() {
         List<Customer> customers = new ArrayList<>();
-        try (Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("select * from customer");
-            while (resultSet.next()){
-                customers.add(new Customer(resultSet.getInt(1), resultSet.getString(2),
-                        resultSet.getString(3), resultSet.getString(4)));
+        try (Connection connection = ds.getConnection()) {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select first_name, last_name, phone from customer");
+            while (rs.next()) {
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                String phone = rs.getString("phone");
+                customers.add(new Customer(firstName, lastName, phone));
             }
         } catch (SQLException e) {
             e.printStackTrace();
