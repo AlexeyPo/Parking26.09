@@ -970,7 +970,7 @@
     <table id="243" parent="5" name="car"/>
     <table id="244" parent="5" name="customer"/>
     <table id="245" parent="5" name="fack_of_parking"/>
-    <table id="246" parent="5" name="parking"/>
+    <table id="246" parent="5" name="parkings"/>
     <table id="247" parent="5" name="user"/>
     <column id="248" parent="243" name="id">
       <Position>1</Position>

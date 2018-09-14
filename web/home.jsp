@@ -12,19 +12,29 @@
     <title>Home</title>
 </head>
 <body>
+<%--<table>--%>
+    <%--<c:forEach var="p" items="${customerBean.customers}">--%>
+        <%--<tr>--%>
+            <%--<td>${p.firstName}</td>--%>
+            <%--<td>${p.lastName}</td>--%>
+            <%--<td>${p.phone}</td>--%>
+        <%--</tr>--%>
+    <%--</c:forEach>--%>
+<%--</table>--%>
+
+
 <table>
-    <c:forEach var="p" items="${customerBean.customers}">
+    <c:forEach var="p" items="${parkingBean.parkings}">
         <tr>
-            <%--<td>${p.id}</td>--%>
-            <td>${p.firstName}</td>
-            <td>${p.lastName}</td>
-            <td>${p.phone}</td>
+            <td>${p.parkingAddress}</td>
+            <td>${p.quantityOfParking}</td>
+            <td>${p.ratePerDay}</td>
+            <td>${p.ratePerMonth}</td>
         </tr>
     </c:forEach>
 </table>
 
 
-<%--<jsp:useBean id="user" class="beans.User" scope="session"/>--%>
 <c:if test="${user.id > 0}">
     <form action="signout.html">
         <input type="submit" value="SignOut">

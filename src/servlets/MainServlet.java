@@ -1,10 +1,8 @@
 package servlets;
 
-import beans.Customer;
-import beans.CustomerBean;
-import beans.LoginBean;
-import beans.User;
+import beans.*;
 import dao.CustomerDAO;
+import dao.ParkingDAO;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -23,6 +21,8 @@ public class MainServlet extends HttpServlet {
     LoginBean loginBean;
     @EJB
     CustomerDAO customerDAO;
+    @EJB
+    ParkingDAO parkingDAO;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -46,16 +46,17 @@ public class MainServlet extends HttpServlet {
                 } else {
                     HttpSession session = request.getSession();
                     session.setAttribute("user", user);
-                    List<Customer> customers = customerDAO.getAllCustomers();
-                    request.setAttribute("customerBean", new CustomerBean(customers));
+//                    List<Customer> customers = customerDAO.getAllCustomers();
+//                    request.setAttribute("customerBean", new CustomerBean(customers));
+                    List<Parking> parkings = parkingDAO.findAllParking();
+                    request.setAttribute("parkingBean", new ParkingBean(parkings));
                     request.getRequestDispatcher("/home.jsp").forward(request, response);
                 }
             }
         } else if (requestURI.endsWith("/signout.html")) {
             request.getSession().setAttribute("user", new User());
-            List<Customer> customers = customerDAO.getAllCustomers();
-            request.setAttribute("customerBean", new CustomerBean(customers));
             request.getRequestDispatcher("/index.jsp").forward(request, response);
+
         }
     }
 }

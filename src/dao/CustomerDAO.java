@@ -24,9 +24,9 @@ public class CustomerDAO {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("select first_name, last_name, phone from customer");
             while (rs.next()) {
-                String firstName = rs.getString("first_name");
-                String lastName = rs.getString("last_name");
-                String phone = rs.getString("phone");
+                String firstName = rs.getString(1);
+                String lastName = rs.getString(2);
+                String phone = rs.getString(3);
                 customers.add(new Customer(firstName, lastName, phone));
             }
         } catch (SQLException e) {
