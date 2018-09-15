@@ -3,6 +3,7 @@ package servlets;
 import beans.*;
 import dao.CustomerDAO;
 import dao.ParkingDAO;
+import dao.UserDAO;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -23,6 +24,8 @@ public class MainServlet extends HttpServlet {
     CustomerDAO customerDAO;
     @EJB
     ParkingDAO parkingDAO;
+    @EJB
+    UserDAO userDAO;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -35,7 +38,7 @@ public class MainServlet extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
         if (requestURI.endsWith("/login.html")) {
-            if ("Sign In".equals(request.getParameter("button"))) {
+            if ("signIn".equals(request.getParameter("button"))) {
                 String login = request.getParameter("login").trim();
                 String password = request.getParameter("password");
                 User user = loginBean.find(login, password);
@@ -48,8 +51,10 @@ public class MainServlet extends HttpServlet {
                     session.setAttribute("user", user);
 //                    List<Customer> customers = customerDAO.getAllCustomers();
 //                    request.setAttribute("customerBean", new CustomerBean(customers));
-                    List<Parking> parkings = parkingDAO.findAllParking();
-                    request.setAttribute("parkingBean", new ParkingBean(parkings));
+//                    List<Parking> parkings = parkingDAO.findAllParking();
+//                    request.setAttribute("parkingBean", new ParkingBean(parkings));
+                    List<User> users = userDAO.findAllUssers();
+                    request.setAttribute("userBean", new UserBean(users));
                     request.getRequestDispatcher("/home.jsp").forward(request, response);
                 }
             }
