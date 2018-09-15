@@ -23,16 +23,16 @@
 <%--</table>--%>
 
 
-<%--<table>--%>
-    <%--<c:forEach var="p" items="${parkingBean.parkings}">--%>
-        <%--<tr>--%>
-            <%--<td>${p.parkingAddress}</td>--%>
-            <%--<td>${p.quantityOfParking}</td>--%>
-            <%--<td>${p.ratePerDay}</td>--%>
-            <%--<td>${p.ratePerMonth}</td>--%>
-        <%--</tr>--%>
-    <%--</c:forEach>--%>
-<%--</table>--%>
+<table>
+    <c:forEach var="p" items="${parkingBean.parkings}">
+        <tr>
+            <td>${p.parkingAddress}</td>
+            <td>${p.quantityOfParking}</td>
+            <td>${p.ratePerDay}</td>
+            <td>${p.ratePerMonth}</td>
+        </tr>
+    </c:forEach>
+</table>
 
 <table>
     <c:forEach var="p" items="${userBean.users}">

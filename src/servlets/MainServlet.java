@@ -37,7 +37,14 @@ public class MainServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
+        if (requestURI.endsWith("/index.html")){
+            List<Parking> parkings = parkingDAO.findAllParking();
+            request.setAttribute("parkingBean", new ParkingBean(parkings));
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
+        }
+
         if (requestURI.endsWith("/login.html")) {
+            request.getRequestDispatcher("/signin.jsp").forward(request, response);
             if ("signIn".equals(request.getParameter("button"))) {
                 String login = request.getParameter("login").trim();
                 String password = request.getParameter("password");
@@ -51,8 +58,8 @@ public class MainServlet extends HttpServlet {
                     session.setAttribute("user", user);
 //                    List<Customer> customers = customerDAO.getAllCustomers();
 //                    request.setAttribute("customerBean", new CustomerBean(customers));
-//                    List<Parking> parkings = parkingDAO.findAllParking();
-//                    request.setAttribute("parkingBean", new ParkingBean(parkings));
+                    List<Parking> parkings = parkingDAO.findAllParking();
+                    request.setAttribute("parkingBean", new ParkingBean(parkings));
                     List<User> users = userDAO.findAllUssers();
                     request.setAttribute("userBean", new UserBean(users));
                     request.getRequestDispatcher("/home.jsp").forward(request, response);
@@ -60,7 +67,7 @@ public class MainServlet extends HttpServlet {
             }
         } else if (requestURI.endsWith("/signout.html")) {
             request.getSession().setAttribute("user", new User());
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            request.getRequestDispatcher("/signin.jsp").forward(request, response);
 
         }
     }
