@@ -14,11 +14,11 @@
         <th>Имя</th>
         <th>Телефон</th>
     </tr>
-    <c:forEach var="u" items="${userBean.users}">
+    <c:forEach var="userBean" items="${userBean.users}">
         <tr>
-            <td>${u.firstName}</td>
-            <td>${u.lastName}</td>
-            <td>${u.phone}</td>
+            <td>${userBean.firstName}</td>
+            <td>${userBean.lastName}</td>
+            <td>${userBean.phone}</td>
         </tr>
     </c:forEach>
 </table>

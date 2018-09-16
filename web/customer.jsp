@@ -12,6 +12,9 @@
 
 <table class="table table-bordered table-striped" border="1px">
     <tr>
+        <th>Номер тр. средства</th>
+        <th>Марка тр. средства</th>
+        <th>Модель тр. средства</th>
         <th>Фамилия</th>
         <th>Имя</th>
         <th>Телефон</th>
