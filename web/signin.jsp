@@ -30,8 +30,8 @@
 <body>
 
 <div class="container">
-
-    <form action="signin.html" method="post" class="form-signin">
+    <h1>${message}</h1>
+    <form action="login.html" method="post" class="form-signin">
         <h3 class="form-signin-heading">Введите логин и пароль</h3>
         <label for="login" class="sr-only">Логин</label>
         <input type="text" id="login" class="form-control" name="login" placeholder="Логин" required autofocus>

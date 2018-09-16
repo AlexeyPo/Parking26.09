@@ -2,32 +2,24 @@
 <%--
   Created by IntelliJ IDEA.
   User: Zver
-  Date: 15.09.2018
-  Time: 23:21
+  Date: 16.09.2018
+  Time: 14:05
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp"/>
-
-
 <table class="table table-bordered table-striped" border="1px">
     <tr>
         <th>Фамилия</th>
         <th>Имя</th>
         <th>Телефон</th>
     </tr>
-    <c:forEach var="p" items="${customerBean.customers}">
+    <c:forEach var="u" items="${userBean.users}">
         <tr>
-            <td>${p.firstName}</td>
-            <td>${p.lastName}</td>
-            <td>${p.phone}</td>
+            <td>${u.firstName}</td>
+            <td>${u.lastName}</td>
+            <td>${u.phone}</td>
         </tr>
     </c:forEach>
 </table>
-
-<c:if test="${user.id > 0}">
-    <form action="signout.html">
-        <input type="submit" value="SignOut">
-    </form>
-</c:if>
 <jsp:include page="footer.jsp"/>

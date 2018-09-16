@@ -37,14 +37,15 @@ public class MainServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
-        if (requestURI.endsWith("/index.html")){
+        if (requestURI.endsWith("/index.html")) {
             List<Parking> parkings = parkingDAO.findAllParking();
             request.setAttribute("parkingBean", new ParkingBean(parkings));
             request.getRequestDispatcher("/index.jsp").forward(request, response);
         }
-
-        if (requestURI.endsWith("/login.html")) {
+        if (requestURI.endsWith("/signin.html")) {
             request.getRequestDispatcher("/signin.jsp").forward(request, response);
+        }
+        if (requestURI.endsWith("/login.html")) {
             if ("signIn".equals(request.getParameter("button"))) {
                 String login = request.getParameter("login").trim();
                 String password = request.getParameter("password");
@@ -52,22 +53,36 @@ public class MainServlet extends HttpServlet {
 
                 if (user.getId() == 0) {
                     request.setAttribute("message", "Login failed. User or password incorrect");
-                    request.getRequestDispatcher("/error.jsp").forward(request, response);
+                    request.getRequestDispatcher("/signin.jsp").forward(request, response);
                 } else {
                     HttpSession session = request.getSession();
                     session.setAttribute("user", user);
-//                    List<Customer> customers = customerDAO.getAllCustomers();
-//                    request.setAttribute("customerBean", new CustomerBean(customers));
-                    List<Parking> parkings = parkingDAO.findAllParking();
-                    request.setAttribute("parkingBean", new ParkingBean(parkings));
-                    List<User> users = userDAO.findAllUssers();
-                    request.setAttribute("userBean", new UserBean(users));
                     request.getRequestDispatcher("/home.jsp").forward(request, response);
+
                 }
             }
-        } else if (requestURI.endsWith("/signout.html")) {
-            request.getSession().setAttribute("user", new User());
-            request.getRequestDispatcher("/signin.jsp").forward(request, response);
+
+
+        }
+
+
+        if (requestURI.endsWith("/menu.html")) {
+            if ("home".equals(request.getParameter("button"))) {
+                request.getRequestDispatcher("home.jsp").forward(request, response);
+            } else if ("customer".equals(request.getParameter("button1"))) {
+                List<Customer> customers = customerDAO.getAllCustomers();
+                request.setAttribute("customerBean", new CustomerBean(customers));
+                request.getRequestDispatcher("/customer.jsp").forward(request, response);
+            } else if ("payment".equals(request.getParameter("button2"))) {
+                request.getRequestDispatcher("/payments.jsp").forward(request, response);
+            } else if ("employee".equals(request.getParameter("button3"))) {
+                List<User> users = userDAO.findAllUssers();
+                request.setAttribute("userBean", new UserBean(users));
+                request.getRequestDispatcher("/employee.jsp").forward(request, response);
+            } else if ("signOut".equals(request.getParameter("button4"))) {
+                request.getSession().setAttribute("user", new User());
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
+            }
 
         }
     }
