@@ -75,7 +75,7 @@ public class MainServlet extends HttpServlet {
                 }
             }
         }
-//menu logic
+//header menu logic
         if (requestURI.endsWith("/menu.html") || requestURI.endsWith("/")) {
             if ("home".equals(request.getParameter("button"))) {
                 List<Customer> customerListOnParking = customerDAO.getAllCarsOnParking(user.getId());
@@ -99,8 +99,7 @@ public class MainServlet extends HttpServlet {
             }
         }
 
-
-        // come in / go out control
+// come in / go out control
         if (requestURI.endsWith("/moveControl.html")) {
             if ("comeIn".equals(request.getParameter("comeIn"))) {
                 String carNumber = request.getParameter("carNumber").trim();
