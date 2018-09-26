@@ -68,19 +68,19 @@
                 <table class="table" >
                     <tr>
                         <td><input type="text" class="form-control" placeholder="Номер тр. средства" id="carNumber"
-                                   name="carNumber"></td>
+                                   name="carNumber" required></td>
                         <td><input type="text" class="form-control" placeholder="Марка тр. средства" id="carMake"
-                                   name="carMake"></td>
+                                   name="carMake" required></td>
                         <td><input type="text" class="form-control" placeholder="Модель" id="carModel" name="carModel">
                         </td>
                         <td><input type="text" class="form-control" placeholder="Фамилия клиента" id="lastName"
-                                   name="lastName">
+                                   name="lastName" required>
                         </td>
                         <td><input type="text" class="form-control" placeholder="Имя клиента" id="firstName"
-                                   name="firstName">
+                                   name="firstName" required>
                         </td>
                         <td><input type="text" class="form-control" placeholder="Номер телефона" id="phone"
-                                   name="phone"></td>
+                                   name="phone" required></td>
                         <td>
                             <button type="submit" class="btn btn-default" name="add" value="add">Добавить</button>
                         </td>
