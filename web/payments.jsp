@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Zver
@@ -7,5 +8,17 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp"/>
-<h1>Payments</h1>
+<div class="container">
+    <table>
+        <c:forEach var="CarBean" items="${carBean.customers}">
+            <tr>
+                <td>${CarBean.make}</td>
+                <td>${CarBean.model}</td>
+                <td>${CarBean.carNumber}</td>
+            </tr>
+        </c:forEach>
+    </table>
+    <h1>Payments</h1>
+</div>
+
 <jsp:include page="footer.jsp"/>

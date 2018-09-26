@@ -20,7 +20,8 @@ public class LoginBean {
             ps.setString(2, password);
             ResultSet resultSet = ps.executeQuery();
             if (resultSet.next()) {
-                return new User(resultSet.getInt(1), login, password);
+                return new User(resultSet.getInt(1), login, password, resultSet.getString(4),
+                        resultSet.getString(5), resultSet.getString(6), resultSet.getBoolean(7));
             } else {
                 return new User(0, login, password);
             }

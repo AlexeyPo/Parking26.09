@@ -3,6 +3,7 @@ package beans;
 import java.util.List;
 
 public class UserBean {
+
     List<User> users;
 
     public UserBean(List<User> users) {

@@ -11,13 +11,13 @@ public class User {
 
     private Parking parking;
 
-    public User(int id, String login, String password, String firstName, String lastName, String phone, boolean active) {
+    public User(int id, String login, String password, String phone, String firstName, String lastName, boolean active) {
         this.id = id;
         this.login = login;
         this.password = password;
+        this.phone = phone;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phone = phone;
         this.active = active;
     }
 
@@ -27,7 +27,14 @@ public class User {
         this.password = password;
     }
 
-    public User(String firstName, String lastName, String phone) {
+//    public User(int id, String login, String password, String firstName) {
+//        this.id = id;
+//        this.login = login;
+//        this.password = password;
+//        this.firstName = firstName;
+//    }
+
+    public User(String firstName, String lastName, String phone) {//list of employee
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;

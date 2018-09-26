@@ -1,25 +1,35 @@
 package beans;
 
+
 public class Customer {
     private int id;
     private String firstName;
     private String lastName;
     private String phone;
+    private String make;
+    private String model;
+    private String carNumber;
 
-    public Customer(int id, String firstName, String lastName, String phone) {
+    public Customer(int id, String firstName, String lastName, String phone, String make, String model, String carNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
-    }
-
-    public Customer(String firstName, String lastName, String phone) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
+        this.make = make;
+        this.model = model;
+        this.carNumber = carNumber;
     }
 
     public Customer() {
+    }
+
+    public Customer(String firstName, String lastName, String phone, String make, String model, String carNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.make = make;
+        this.model = model;
+        this.carNumber = carNumber;
     }
 
     public int getId() {
@@ -52,5 +62,29 @@ public class Customer {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getMake() {
+        return make;
+    }
+
+    public void setMake(String make) {
+        this.make = make;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getCarNumber() {
+        return carNumber;
+    }
+
+    public void setCarNumber(String carNumber) {
+        this.carNumber = carNumber;
     }
 }

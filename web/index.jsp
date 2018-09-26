@@ -51,29 +51,37 @@
 
 <!-- Begin page content -->
 <div class="container">
-    <div class="container">
-        <form action="index.html" method="post">
-            <input type="submit" value="BD">
-        </form>
 
-        <div class="table table-striped">
-            <c:forEach var="p" items="${parkingBean.parkings}">
-                <tr>
-                    <td>${p.parkingAddress}</td>
-                    <td>${p.quantityOfParking}</td>
-                    <td>${p.ratePerDay}</td>
-                    <td>${p.ratePerMonth}</td>
-                </tr>
-            </c:forEach>
+    <div class="col-xs-12">
+        <div class="jumbotron">
 
+            <div class="container">
+                <h3></h3>
 
+                <table class="table table-striped" style="background-color: #ffffff">
+                    <tr>
+                        <th>Адресс парковки</th>
+                        <th>Всего парко-мест на стоянке</th>
+                        <th>Свободных парко-мест на стоянке</th>
+                        <th>Оплата<br> грн/сутки</th>
+                        <th>Оплата<br> грн/месяц</th>
+                    </tr>
+                    <c:forEach var="p" items="${parkingBean.parkings}">
+                        <tr>
+                            <td>${p.parkingAddress}</td>
+                            <td>${p.quantityOfParking}</td>
+                            <td>${p.quantityOfParking}</td>
+                            <td>${p.ratePerDay}</td>
+                            <td>${p.ratePerMonth}</td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
         </div>
     </div>
 
 </div>
-
 <jsp:include page="footer.jsp"/>
-
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

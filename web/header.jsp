@@ -51,7 +51,9 @@
                     <button class="btn btn-default" type="submit" name="button1" value="customer">Клиенты</button>
                     <button class="btn btn-default" type="submit" name="button2" value="payment">Оплата</button>
                     <button class="btn btn-default" type="submit" name="button3" value="employee">Сотрудники</button>
+                    <jsp:useBean id="user" type="beans.User" scope="session"/>
                     <button class="btn btn-success navbar-right" type="submit" name="button4" value="signOut">Выйти</button>
+                    <h5 class="navbar-text navbar-right">Смена: ${user.phone} ${user.firstName}</h5>
                 </div>
 
 

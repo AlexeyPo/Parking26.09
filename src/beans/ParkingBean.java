@@ -3,6 +3,7 @@ package beans;
 import java.util.List;
 
 public class ParkingBean {
+
     private List<Parking> parkings;
 
     public ParkingBean(List<Parking> parkings) {

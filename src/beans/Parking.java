@@ -25,6 +25,10 @@ public class Parking {
     public Parking() {
     }
 
+    public Parking(String parkingAddress) {
+        this.parkingAddress = parkingAddress;
+    }
+
     public int getId() {
         return id;
     }
@@ -64,4 +68,5 @@ public class Parking {
     public void setRatePerMonth(int ratePerMonth) {
         this.ratePerMonth = ratePerMonth;
     }
+
 }

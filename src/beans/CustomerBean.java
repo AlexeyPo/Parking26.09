@@ -3,7 +3,7 @@ package beans;
 import java.util.List;
 
 public class CustomerBean {
-    private List<Customer> customers;
+    List<Customer> customers;
 
     public CustomerBean(List<Customer> customers) {
         this.customers = customers;

@@ -1,6 +1,7 @@
 package dao;
 
 import beans.Parking;
+import beans.User;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
@@ -18,12 +19,14 @@ public class ParkingDAO {
     @Resource(mappedName = "jdbc/parking")
     DataSource ds;
 
-    public List<Parking> findAllParking(){
+    User user;
+
+    public List<Parking> findAllParking() {
         List<Parking> parkings = new ArrayList<>();
         try (Connection connection = ds.getConnection()) {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select parking_address, quantity_of_parking, rate_per_day, rate_per_month from parkings");
-            while (rs.next()){
+            ResultSet rs = statement.executeQuery("SELECT parking_address, quantity_of_parking, rate_per_day, rate_per_month FROM parkings");
+            while (rs.next()) {
                 String parkingAddress = rs.getString(1);
                 int quantityOfParking = rs.getInt(2);
                 int ratePerDay = rs.getInt(3);

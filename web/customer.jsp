@@ -9,28 +9,33 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp"/>
 
+<div class="container">
 
-<table class="table table-bordered table-striped" border="1px">
-    <tr>
-        <th>Номер тр. средства</th>
-        <th>Марка тр. средства</th>
-        <th>Модель тр. средства</th>
-        <th>Фамилия</th>
-        <th>Имя</th>
-        <th>Телефон</th>
-    </tr>
-    <c:forEach var="p" items="${customerBean.customers}">
-        <tr>
-            <td>${p.firstName}</td>
-            <td>${p.lastName}</td>
-            <td>${p.phone}</td>
-        </tr>
-    </c:forEach>
-</table>
+        <table class="table table-bordered table-striped" border="1px">
+            <tr>
+                <th>Номер тр. средства</th>
+                <th>Марка тр. средства</th>
+                <th>Модель тр. средства</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Телефон</th>
+                <th>Действие</th>
+            </tr>
 
-<c:if test="${user.id > 0}">
-    <form action="signout.html">
-        <input type="submit" value="SignOut">
-    </form>
-</c:if>
+            <c:forEach var="customerList" items="${customerList}">
+                <tr>
+                    <td>${customerList.carNumber}</td>
+                    <td>${customerList.make}</td>
+                    <td>${customerList.model}</td>
+                    <td>${customerList.lastName}</td>
+                    <td>${customerList.firstName}</td>
+                    <td>${customerList.phone}</td>
+                    <td>
+                        <button type="submit" class="btn btn-default" name="change" value="change">Изменить</button>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+
+</div>
 <jsp:include page="footer.jsp"/>
