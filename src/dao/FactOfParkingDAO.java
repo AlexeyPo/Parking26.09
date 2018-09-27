@@ -33,8 +33,8 @@ public class FactOfParkingDAO {
         return respond;
     }
 
-    public boolean stopParking(String carNumber, int id) {
-
+    public int stopParking(String carNumber, int id) {
+        int respond = 0;
         try (Connection connection = ds.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("UPDATE fact_of_parking SET finish=CURRENT_TIMESTAMP(), user_id=? " +
                     "WHERE start_time IS NOT null AND customer_id IN (SELECT id FROM customer WHERE car_number=?)");
@@ -42,25 +42,25 @@ public class FactOfParkingDAO {
             statement.setString(2, carNumber);
             statement.executeUpdate();
             statement.close();
-            return true;
+            respond = 1;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return respond;
         }
+        return respond;
     }
 
     public boolean isCarOnParking(String carNumber) {
         try (Connection connection = ds.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT customer_id FROM fact_of_parking WHERE" +
-                    " start_time IS NOT null AND customer_id IN (SELECT id FROM customer WHERE car_number = ?) " +
-                    "GROUP BY customer_id");
+                    " start_time IS NOT null AND finish IS null AND customer_id IN (SELECT id FROM customer " +
+                    "WHERE car_number = ?) GROUP BY customer_id");
             statement.setString(1, carNumber);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                resultSet.getInt("id");
-                return false;
+                return true;
             }
-            return true;
+            return false;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

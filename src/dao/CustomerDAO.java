@@ -56,7 +56,7 @@ public class CustomerDAO {
         try (Connection connection = ds.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM customer INNER JOIN " +
                     "fact_of_parking fop on customer.id = fop.customer_id inner JOIN user u on fop.user_id = u.id" +
-                    " WHERE u.id=?");
+                    " WHERE u.id=? GROUP BY customer.id");
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             getList(customerList, resultSet);
@@ -73,7 +73,7 @@ public class CustomerDAO {
         try (Connection connection = ds.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM customer INNER JOIN fact_of_parking fop on " +
                     "customer.id = fop.customer_id INNER JOIN user u on fop.user_id = u.id " +
-                    "WHERE u.id=? AND finish IS NULL");
+                    "WHERE u.id=? AND finish IS NULL GROUP BY customer_id");
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             getList(customerList, resultSet);

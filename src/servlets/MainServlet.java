@@ -69,18 +69,14 @@ public class MainServlet extends HttpServlet {
                 } else if (user.getId() > 0) {
                     request.getSession().setAttribute("user", user);
 //                    sessionId = session.getId();
-                    List<Customer> customerListOnParking = customerDAO.getAllCarsOnParking(user.getId());
-                    request.setAttribute("customerListOnParking", customerListOnParking);
-                    request.getRequestDispatcher("/home.jsp").forward(request, response);
+                    getCustomerList(request, response);
                 }
             }
         }
 //header menu logic
         if (requestURI.endsWith("/menu.html") || requestURI.endsWith("/")) {
             if ("home".equals(request.getParameter("button"))) {
-                List<Customer> customerListOnParking = customerDAO.getAllCarsOnParking(user.getId());
-                request.setAttribute("customerListOnParking", customerListOnParking);
-                request.getRequestDispatcher("/home.jsp").forward(request, response);
+                getCustomerList(request, response);
             } else if ("customer".equals(request.getParameter("button1"))) {
                 List<Customer> customerList = customerDAO.getAllCustomers(user.getId());
                 request.setAttribute("customerList", customerList);
@@ -90,8 +86,6 @@ public class MainServlet extends HttpServlet {
             } else if ("employee".equals(request.getParameter("button3"))) {
                 List<User> users = userDAO.findbyUser(user.getId());
                 request.setAttribute("userBean", new UserBean(users));
-//                List<Parking> parkingList = parkingDAO.findParkingByUser(user);
-//                request.setAttribute("ParkingBean", new ParkingBean(parkingList));
                 request.getRequestDispatcher("/employee.jsp").forward(request, response);
             } else if ("signOut".equals(request.getParameter("button4"))) {
                 request.getSession().setAttribute("user", new User());
@@ -106,30 +100,29 @@ public class MainServlet extends HttpServlet {
                 if (customerDAO.isCarInDataBase(carNumber)) {
                     if (!factOfParkingDAO.isCarOnParking(carNumber)) {
                         factOfParkingDAO.startParking(carNumber, user.getId());
-                        request.getRequestDispatcher("/home.jsp").forward(request, response);
+                        getCustomerList(request, response);
                     } else {
-                        request.setAttribute("message", "Трпнспортное средство уже на парковке");
-                        request.getRequestDispatcher("/home.jsp").forward(request, response);
+                        request.setAttribute("message", "Транспортное средство уже на парковке");
+                        getCustomerList(request, response);
                     }
                 } else {
                     request.setAttribute("message", "Номер тр. средства отсутствует в базе");
-                    request.getRequestDispatcher("/home.jsp").forward(request, response);
+                    getCustomerList(request, response);
                 }
 
             } else if ("goOut".equals(request.getParameter("goOut"))) {
                 String carNumberOut = request.getParameter("carNumberOut").trim();
                 if (customerDAO.isCarInDataBase(carNumberOut)) {//delete ability to go out twice
-                    if (factOfParkingDAO.stopParking(carNumberOut, user.getId())) {
-                        List<Customer> customerListOnParking = customerDAO.getAllCarsOnParking(user.getId());
-                        request.setAttribute("customerListOnParking", customerListOnParking);
-                        request.getRequestDispatcher("/home.jsp").forward(request, response);
+                    if (factOfParkingDAO.isCarOnParking(carNumberOut)) {
+                        factOfParkingDAO.stopParking(carNumberOut, user.getId());
+                        getCustomerList(request, response);
                     } else {
                         request.setAttribute("message", "Тр. средство отсутствует на стоянке");
-                        request.getRequestDispatcher("/home.jsp").forward(request, response);
+                        getCustomerList(request, response);
                     }
                 } else {
                     request.setAttribute("message", "Номер тр. средства отсутствует в базе");
-                    request.getRequestDispatcher("/home.jsp").forward(request, response);
+                    getCustomerList(request, response);
                 }
             }
         }
@@ -147,9 +140,7 @@ public class MainServlet extends HttpServlet {
             if (!customerDAO.isCarInDataBase(carNumber)) {
                 customerDAO.addNewCustomer(customer);
                 factOfParkingDAO.startParking(carNumber, user.getId());
-                List<Customer> customerListOnParking = customerDAO.getAllCarsOnParking(user.getId());
-                request.setAttribute("customerListOnParking", customerListOnParking);
-                request.getRequestDispatcher("/home.jsp").forward(request, response);
+                getCustomerList(request, response);
 
             }
 //
@@ -167,5 +158,11 @@ public class MainServlet extends HttpServlet {
 ////    }
 //        }
         }
+    }
+
+    private void getCustomerList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Customer> customerListOnParking = customerDAO.getAllCarsOnParking(user.getId());
+        request.setAttribute("customerListOnParking", customerListOnParking);
+        request.getRequestDispatcher("/home.jsp").forward(request, response);
     }
 }
