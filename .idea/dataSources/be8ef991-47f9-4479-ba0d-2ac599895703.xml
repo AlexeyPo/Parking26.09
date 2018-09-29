@@ -1096,91 +1096,96 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="246" name="rate_per_day">
+    <column id="269" parent="246" name="quantity_of_occupied_parking">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="246" name="rate_per_month">
+    <column id="270" parent="246" name="rate_per_day">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="271" parent="246" name="PRIMARY">
+    <column id="271" parent="246" name="rate_per_month">
+      <Position>6</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="272" parent="246" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="272" parent="247" name="id">
+    <column id="273" parent="247" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="247" name="login">
+    <column id="274" parent="247" name="login">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="274" parent="247" name="password">
+    <column id="275" parent="247" name="password">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="275" parent="247" name="first_name">
+    <column id="276" parent="247" name="first_name">
       <Position>4</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="276" parent="247" name="last_name">
+    <column id="277" parent="247" name="last_name">
       <Position>5</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="277" parent="247" name="phone">
+    <column id="278" parent="247" name="phone">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="278" parent="247" name="active">
+    <column id="279" parent="247" name="active">
       <Position>7</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="279" parent="247" name="parking_id">
+    <column id="280" parent="247" name="parking_id">
       <Position>8</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="280" parent="247" name="User_login_uindex">
+    <index id="281" parent="247" name="User_login_uindex">
       <ColNames>login</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="281" parent="247" name="user_ibfk_1">
+    <index id="282" parent="247" name="user_ibfk_1">
       <ColNames>parking_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="282" parent="247" name="PRIMARY">
+    <key id="283" parent="247" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="283" parent="247" name="User_login_uindex">
+    <key id="284" parent="247" name="User_login_uindex">
       <ColNames>login</ColNames>
       <UnderlyingIndexName>User_login_uindex</UnderlyingIndexName>
     </key>
-    <foreign-key id="284" parent="247" name="user_ibfk_1">
+    <foreign-key id="285" parent="247" name="user_ibfk_1">
       <ColNames>parking_id</ColNames>
       <RefSchemaName>parking</RefSchemaName>
       <RefTableName>parkings</RefTableName>

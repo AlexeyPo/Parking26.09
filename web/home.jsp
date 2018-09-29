@@ -46,12 +46,12 @@
                 <input type="text" class="form-control" placeholder="Номер тр. средства" id="carNumberIn"
                        name="carNumber">
             </div>
-            <button type="submit" class="btn btn-default" name="comeIn" value="comeIn">Въехал</button>
+            <button type="submit" class="btn btn-default" name="comeIn" value="comeIn">Въезд</button>
             <div class="form-group">
                 <label for="carNumberOut">Номер тр. средства</label>
                 <input type="text" class="form-control" placeholder="Номер тр. средства" id="carNumberOut"
                        name="carNumberOut">
-                <button type="submit" class="btn btn-default" name="goOut" value="goOut">Выехал</button>
+                <button type="submit" class="btn btn-default" name="goOut" value="goOut">Выезд</button>
             </div>
         </form>
     </div>

@@ -15,8 +15,7 @@ public class FactOfParkingDAO {
     @Resource(mappedName = "jdbc/parking")
     DataSource ds;
 
-    public int startParking(String carNumber, int id) {
-        int respond = 0;
+    public void startParking(String carNumber, int id) {
         try (Connection connection = ds.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO fact_of_parking(start_time, " +
                     "user_id, customer_id) VALUES (CURRENT_TIMESTAMP(), ?, (SELECT id FROM customer " +
@@ -25,16 +24,12 @@ public class FactOfParkingDAO {
             statement.setString(2, carNumber);
             statement.executeUpdate();
             statement.close();
-            respond = 1;
         } catch (SQLException e) {
             e.printStackTrace();
-            return respond;
         }
-        return respond;
     }
 
-    public int stopParking(String carNumber, int id) {
-        int respond = 0;
+    public void stopParking(String carNumber, int id) {
         try (Connection connection = ds.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("UPDATE fact_of_parking SET finish=CURRENT_TIMESTAMP(), user_id=? " +
                     "WHERE start_time IS NOT null AND customer_id IN (SELECT id FROM customer WHERE car_number=?)");
@@ -42,12 +37,9 @@ public class FactOfParkingDAO {
             statement.setString(2, carNumber);
             statement.executeUpdate();
             statement.close();
-            respond = 1;
         } catch (SQLException e) {
             e.printStackTrace();
-            return respond;
         }
-        return respond;
     }
 
     public boolean isCarOnParking(String carNumber) {
@@ -57,14 +49,10 @@ public class FactOfParkingDAO {
                     "WHERE car_number = ?) GROUP BY customer_id");
             statement.setString(1, carNumber);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                return true;
-            }
-            return false;
+            return resultSet.next();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-
 }

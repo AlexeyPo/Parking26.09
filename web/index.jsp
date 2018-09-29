@@ -53,7 +53,7 @@
 <div class="container">
 
     <div class="col-xs-12">
-        <div class="jumbotron">
+        <div class="jumbotron col-xs-12 col-sm-8 col-md-offset-2">
 
             <div class="container">
                 <h3></h3>
@@ -61,8 +61,8 @@
                 <table class="table table-striped" style="background-color: #ffffff">
                     <tr>
                         <th>Адресс парковки</th>
-                        <th>Всего парко-мест на стоянке</th>
-                        <th>Свободных парко-мест на стоянке</th>
+                        <th>Всего<br> мест</th>
+                        <th>Свободных<br> мест</th>
                         <th>Оплата<br> грн/сутки</th>
                         <th>Оплата<br> грн/месяц</th>
                     </tr>
@@ -70,7 +70,7 @@
                         <tr>
                             <td>${p.parkingAddress}</td>
                             <td>${p.quantityOfParking}</td>
-                            <td>${p.quantityOfParking}</td>
+                            <td>${p.quantityOfParking - p.quantityOfOccupiedParking}</td>
                             <td>${p.ratePerDay}</td>
                             <td>${p.ratePerMonth}</td>
                         </tr>

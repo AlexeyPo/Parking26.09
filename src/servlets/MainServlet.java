@@ -41,13 +41,11 @@ public class MainServlet extends HttpServlet {
         processRequest(request, response);
     }
 
-    //
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    //
-//
+
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
         if (requestURI.endsWith("/index.html") || requestURI.endsWith("/")) {
@@ -73,6 +71,7 @@ public class MainServlet extends HttpServlet {
                 }
             }
         }
+
 //header menu logic
         if (requestURI.endsWith("/menu.html") || requestURI.endsWith("/")) {
             if ("home".equals(request.getParameter("button"))) {
@@ -84,7 +83,7 @@ public class MainServlet extends HttpServlet {
             } else if ("payment".equals(request.getParameter("button2"))) {
                 request.getRequestDispatcher("/payments.jsp").forward(request, response);
             } else if ("employee".equals(request.getParameter("button3"))) {
-                List<User> users = userDAO.findbyUser(user.getId());
+                List<User> users = userDAO.findUsersById(user.getId());
                 request.setAttribute("userBean", new UserBean(users));
                 request.getRequestDispatcher("/employee.jsp").forward(request, response);
             } else if ("signOut".equals(request.getParameter("button4"))) {
@@ -100,6 +99,7 @@ public class MainServlet extends HttpServlet {
                 if (customerDAO.isCarInDataBase(carNumber)) {
                     if (!factOfParkingDAO.isCarOnParking(carNumber)) {
                         factOfParkingDAO.startParking(carNumber, user.getId());
+                        parkingDAO.countOccupiedParking(user.getId());
                         getCustomerList(request, response);
                     } else {
                         request.setAttribute("message", "Транспортное средство уже на парковке");
@@ -115,6 +115,7 @@ public class MainServlet extends HttpServlet {
                 if (customerDAO.isCarInDataBase(carNumberOut)) {//delete ability to go out twice
                     if (factOfParkingDAO.isCarOnParking(carNumberOut)) {
                         factOfParkingDAO.stopParking(carNumberOut, user.getId());
+                        parkingDAO.countOccupiedParking(user.getId());
                         getCustomerList(request, response);
                     } else {
                         request.setAttribute("message", "Тр. средство отсутствует на стоянке");
@@ -126,6 +127,7 @@ public class MainServlet extends HttpServlet {
                 }
             }
         }
+
 //add new Customer
         if (requestURI.endsWith("client.html")) {
             String make = request.getParameter("carMake");
@@ -141,22 +143,7 @@ public class MainServlet extends HttpServlet {
                 customerDAO.addNewCustomer(customer);
                 factOfParkingDAO.startParking(carNumber, user.getId());
                 getCustomerList(request, response);
-
             }
-//
-//
-////            }
-////            if (customerDAO.addNewCar(car)){
-////                List<Customer> customerList = customerDAO.getAllCustomers(user.getId());
-////                request.setAttribute("customerList", customerList);
-////                request.getRequestDispatcher("/customer.jsp").forward(request, response);
-////            }else {
-////                request.getRequestDispatcher("/customer.jsp").forward(request, response);
-////            }
-////
-////        }
-////    }
-//        }
         }
     }
 

@@ -54,13 +54,13 @@ public class CustomerDAO {
     public List<Customer> getAllCustomers(int id) {
         List<Customer> customerList = new ArrayList<>();
         try (Connection connection = ds.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM customer INNER JOIN " +
-                    "fact_of_parking fop on customer.id = fop.customer_id inner JOIN user u on fop.user_id = u.id" +
-                    " WHERE u.id=? GROUP BY customer.id");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM customer INNER " +
+                    "JOIN fact_of_parking fop on customer.id = fop.customer_id INNER JOIN user u on fop.user_id = u.id" +
+                    " INNER JOIN parkings p on u.parking_id = p.id WHERE p.id IN (SELECT parking_id FROM user WHERE id=?)" +
+                    "GROUP BY customer_id");
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             getList(customerList, resultSet);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -68,12 +68,12 @@ public class CustomerDAO {
     }
 
     public List<Customer> getAllCarsOnParking(int id) {
-
         List<Customer> customerList = new ArrayList<>();
         try (Connection connection = ds.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM customer INNER JOIN fact_of_parking fop on " +
-                    "customer.id = fop.customer_id INNER JOIN user u on fop.user_id = u.id " +
-                    "WHERE u.id=? AND finish IS NULL GROUP BY customer_id");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM customer INNER JOIN " +
+                    "fact_of_parking fop on customer.id = fop.customer_id INNER JOIN user u on fop.user_id = u.id INNER" +
+                    " JOIN parkings p on u.parking_id = p.id WHERE p.id IN (SELECT parking_id FROM user WHERE id=?) AND" +
+                    " finish IS NULL GROUP BY customer_id");
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             getList(customerList, resultSet);
