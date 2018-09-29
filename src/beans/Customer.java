@@ -9,6 +9,20 @@ public class Customer {
     private String make;
     private String model;
     private String carNumber;
+    private int payment;
+    private int balance;
+
+    public Customer(int id, String firstName, String lastName, String phone, String make, String model, String carNumber, int payment, int balance) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.make = make;
+        this.model = model;
+        this.carNumber = carNumber;
+        this.payment = payment;
+        this.balance = balance;
+    }
 
     public Customer(int id, String firstName, String lastName, String phone, String make, String model, String carNumber) {
         this.id = id;
@@ -30,6 +44,27 @@ public class Customer {
         this.make = make;
         this.model = model;
         this.carNumber = carNumber;
+    }
+
+    public Customer(String carNumber, int payment) {
+        this.carNumber=carNumber;
+        this.payment=payment;
+    }
+
+    public int getPayment() {
+        return payment;
+    }
+
+    public void setPayment(int payment) {
+        this.payment = payment;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 
     public int getId() {

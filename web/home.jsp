@@ -8,36 +8,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp"/>
-<%--<jsp:useBean id="user" type="beans.User" scope="session"/>--%>
-<%--<table border="1px">--%>
-<%--<tr>--%>
-<%--<th>id</th>--%>
-<%--<th>login</th>--%>
-<%--<th>password</th>--%>
-<%--<th>lastName</th>--%>
-<%--<th>firstName</th>--%>
-<%--<th>phone</th>--%>
-<%--<th>active</th>--%>
-<%--</tr>--%>
-<%--<tr>--%>
-<%--<td>${user.id}</td>--%>
-<%--<td>${user.login}</td>--%>
-<%--<td>${user.password}</td>--%>
-<%--<td>${user.lastName}</td>--%>
-<%--<td>${user.firstName}</td>--%>
-<%--<td>${user.phone}</td>--%>
-<%--<td>${user.active}</td>--%>
-<%--<td><%= session.getAttribute("user") %>--%>
-<%--</td>--%>
-<%--<td><%= session.getId()%>--%>
-<%--</td>--%>
-<%--</tr>--%>
-<%--</table>--%>
-<%--<h1>Hello ${user.firstName}</h1>--%>
-
 <div class="container">
 
-    <div class="jumbotron col-xs-12 col-sm-6">
+    <div class="jumbotron col-xs-12 col-xs-5" style="width: 45%">
         <h3>Контроль въезда/выезда клиентов</h3>
         <h4 style="color: #c9302c">${message}</h4>
         <form action="moveControl.html" class="navbar-form navbar-left" method="post">
@@ -56,8 +29,28 @@
         </form>
     </div>
 
-    <div class="jumbotron col-xs-12 col-sm-6">
+    <div class="jumbotron col-xs-12 col-xs-5 col-xs-offset-1" style="width: 45%">
+        <h3>Оплата за парковку</h3>
+        <h4 style="color: #c9302c">${messageP}</h4>
+        <form action="payment.html" class="navbar-form navbar-left" method="post">
 
+            <table>
+                <tr>
+                    <td><label class="control-label" for="carNumberP">Номер тр. средства</label></td>
+                    <td><input class="form-control" type="text" id="carNumberP" name="carNumberP"
+                               placeholder="Номер тр. средства" style="margin-left: 3px" required></td>
+                    <td rowspan="2">
+                        <button type="submit" class="btn btn-default btn-lg" name="toPay" value="toPay"
+                                style="margin-left: 3px">Оплатить</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="control-label" for="payment">Сумма оплаты</label></td>
+                    <td><input class="form-control" type="text" id="payment" name="payment" placeholder="Сумма оплаты"
+                               style="margin-left: 3px" required></td>
+                </tr>
+            </table>
+        </form>
     </div>
 
 
@@ -65,7 +58,7 @@
         <h3>Добавить нового клиента / с отметкой въезда</h3>
         <div class="container">
             <form action="client.html" method="post">
-                <table class="table" >
+                <table class="table">
                     <tr>
                         <td><input type="text" class="form-control" placeholder="Номер тр. средства" id="carNumber"
                                    name="carNumber" required></td>

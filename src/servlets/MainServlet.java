@@ -35,6 +35,7 @@ public class MainServlet extends HttpServlet {
     User user;
     String sessionId;
     HttpSession session;
+    Parking parking;
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -112,7 +113,7 @@ public class MainServlet extends HttpServlet {
 
             } else if ("goOut".equals(request.getParameter("goOut"))) {
                 String carNumberOut = request.getParameter("carNumberOut").trim();
-                if (customerDAO.isCarInDataBase(carNumberOut)) {//delete ability to go out twice
+                if (customerDAO.isCarInDataBase(carNumberOut)) {
                     if (factOfParkingDAO.isCarOnParking(carNumberOut)) {
                         factOfParkingDAO.stopParking(carNumberOut, user.getId());
                         parkingDAO.countOccupiedParking(user.getId());
@@ -145,6 +146,20 @@ public class MainServlet extends HttpServlet {
                 getCustomerList(request, response);
             }
         }
+
+        if(requestURI.endsWith("payment.html")) {
+            String carNumber = request.getParameter("carNumberP");
+            int payment = Integer.parseInt(request.getParameter("payment"));
+            Customer customer = new Customer(carNumber, payment);
+            if (customerDAO.isCarInDataBase(carNumber)) {
+
+                getCustomerList(request, response);
+            } else {
+                request.setAttribute("messageP", "Номер тр. средства отсутствует в базе");
+                getCustomerList(request, response);
+            }
+        }
+
     }
 
     private void getCustomerList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -152,4 +167,7 @@ public class MainServlet extends HttpServlet {
         request.setAttribute("customerListOnParking", customerListOnParking);
         request.getRequestDispatcher("/home.jsp").forward(request, response);
     }
+
+// payment logic
+
 }
