@@ -53,7 +53,7 @@
 <div class="container">
 
     <div class="col-xs-12">
-        <div class="jumbotron col-xs-12 col-sm-8 col-md-offset-2">
+        <div class="jumbotron col-xs-12 col-sm-6 col-md-offset-3">
 
             <div class="container">
                 <h3></h3>
@@ -64,7 +64,6 @@
                         <th>Всего<br> мест</th>
                         <th>Свободных<br> мест</th>
                         <th>Оплата<br> грн/сутки</th>
-                        <th>Оплата<br> грн/месяц</th>
                     </tr>
                     <c:forEach var="p" items="${parkingBean.parkings}">
                         <tr>
@@ -72,7 +71,6 @@
                             <td>${p.quantityOfParking}</td>
                             <td>${p.quantityOfParking - p.quantityOfOccupiedParking}</td>
                             <td>${p.ratePerDay}</td>
-                            <td>${p.ratePerMonth}</td>
                         </tr>
                     </c:forEach>
                 </table>

@@ -18,7 +18,7 @@
     <meta name="author" content="">
     <link rel="icon" href="<c:url value="/resources/images/favicon.ico"/>">
 
-    <title>Header</title>
+    <title>Parking</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
@@ -41,7 +41,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Parking</a>
+            <a class="navbar-brand" href="./index.html">Parking</a>
         </div>
         <form action="menu.html" method="post">
             <div id="navbar" class="collapse navbar-collapse">

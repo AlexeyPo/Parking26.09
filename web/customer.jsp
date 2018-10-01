@@ -10,7 +10,8 @@
 <jsp:include page="header.jsp"/>
 
 <div class="container">
-
+    <div class="jumbotron col-xs-12">
+        <h3>Список всех клиентов</h3>
         <table class="table table-bordered table-striped" border="1px">
             <tr>
                 <th>Номер тр. средства</th>
@@ -19,7 +20,6 @@
                 <th>Фамилия</th>
                 <th>Имя</th>
                 <th>Телефон</th>
-                <th>Действие</th>
             </tr>
 
             <c:forEach var="customerList" items="${customerList}">
@@ -30,12 +30,10 @@
                     <td>${customerList.lastName}</td>
                     <td>${customerList.firstName}</td>
                     <td>${customerList.phone}</td>
-                    <td>
-                        <button type="submit" class="btn btn-default" name="change" value="change">Изменить</button>
-                    </td>
                 </tr>
             </c:forEach>
         </table>
+    </div>
 
 </div>
 <jsp:include page="footer.jsp"/>

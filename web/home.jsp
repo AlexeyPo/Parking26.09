@@ -10,7 +10,7 @@
 <jsp:include page="header.jsp"/>
 <div class="container">
 
-    <div class="jumbotron col-xs-12 col-xs-5" style="width: 45%">
+    <div class="jumbotron col-xs-12 col-xs-5">
         <h3>Контроль въезда/выезда клиентов</h3>
         <h4 style="color: #c9302c">${message}</h4>
         <form action="moveControl.html" class="navbar-form navbar-left" method="post">
@@ -20,7 +20,7 @@
                        name="carNumber">
             </div>
             <button type="submit" class="btn btn-default" name="comeIn" value="comeIn">Въезд</button>
-            <div class="form-group">
+            <div class="form-group" style="margin-top: 1px">
                 <label for="carNumberOut">Номер тр. средства</label>
                 <input type="text" class="form-control" placeholder="Номер тр. средства" id="carNumberOut"
                        name="carNumberOut">
@@ -29,29 +29,35 @@
         </form>
     </div>
 
-    <div class="jumbotron col-xs-12 col-xs-5 col-xs-offset-1" style="width: 45%">
-        <h3>Оплата за парковку</h3>
-        <h4 style="color: #c9302c">${messageP}</h4>
-        <form action="payment.html" class="navbar-form navbar-left" method="post">
+    <div class="jumbotron col-xs-12 col-xs-5 col-xs-offset-2">
 
-            <table>
-                <tr>
-                    <td><label class="control-label" for="carNumberP">Номер тр. средства</label></td>
-                    <td><input class="form-control" type="text" id="carNumberP" name="carNumberP"
-                               placeholder="Номер тр. средства" style="margin-left: 3px" required></td>
-                    <td rowspan="2">
-                        <button type="submit" class="btn btn-default btn-lg" name="toPay" value="toPay"
-                                style="margin-left: 3px">Оплатить</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label class="control-label" for="payment">Сумма оплаты</label></td>
-                    <td><input class="form-control" type="text" id="payment" name="payment" placeholder="Сумма оплаты"
-                               style="margin-left: 3px" required></td>
-                </tr>
-            </table>
-        </form>
+        <c:if test="${daysOnParking==0}">
+            ${daysOnParking=1}
+        </c:if>
+        <div class="container col-xs-11 col-xs-offset-1">
+            <h3>Оплата за парковку: ${daysOnParking * rate} грн</h3>
+            <h3 style="color: #c9302c">${messagePayment}</h3>
+            <form action="payment.html" class="navbar-form navbar-left" method="post">
+                <table>
+                    <tr>
+                        <td><label class="control-label" for="carNumberPayment">Номер тр. средства</label></td>
+                        <td><input class="form-control" type="text" id="carNumberPayment" name="carNumberPayment"
+                                   placeholder="Номер тр. средства" style="margin-left: 3px" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit" data-toggle="modal" data-target="#myModal"
+                                    class="btn btn-success btn-block active" name="toPay" value="toPay"
+                                    style="margin-top: 1px">Оплатить
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
     </div>
+
+
 
 
     <div class="jumbotron col-xs-12">
@@ -74,6 +80,7 @@
                         </td>
                         <td><input type="text" class="form-control" placeholder="Номер телефона" id="phone"
                                    name="phone" required></td>
+                        <td></td>
                         <td>
                             <button type="submit" class="btn btn-default" name="add" value="add">Добавить</button>
                         </td>
@@ -110,4 +117,9 @@
     </div>
 
 </div>
+
+
 <jsp:include page="footer.jsp"/>
+
+
+

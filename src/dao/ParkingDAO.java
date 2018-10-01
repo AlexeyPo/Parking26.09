@@ -20,14 +20,13 @@ public class ParkingDAO {
         try (Connection connection = ds.getConnection()) {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT parking_address, quantity_of_parking, " +
-                    "quantity_of_occupied_parking, rate_per_day, rate_per_month FROM parkings");
+                    "quantity_of_occupied_parking, rate_per_day FROM parkings");
             while (rs.next()) {
                 String parkingAddress = rs.getString(1);
                 int quantityOfParking = rs.getInt(2);
                 int quantityOfOccupiedParking = rs.getInt(3);
                 int ratePerDay = rs.getInt(4);
-                int ratePerMonth = rs.getInt(5);
-                parkings.add(new Parking(parkingAddress, quantityOfParking, quantityOfOccupiedParking, ratePerDay, ratePerMonth));
+                parkings.add(new Parking(parkingAddress, quantityOfParking, quantityOfOccupiedParking, ratePerDay));
             }
         } catch (SQLException e) {
             e.printStackTrace();

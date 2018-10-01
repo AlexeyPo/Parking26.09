@@ -38,7 +38,7 @@ public class CustomerDAO {
     public void addNewCustomer(Customer customer) {
         try (Connection connection = ds.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO customer(first_name," +
-                    " last_name, phone, make, model, car_number) VALUES (?,?,?,?,?,?)");
+                    " last_name, phone, make, model, car_number, payment) VALUES (?,?,?,?,?,?)");
             statement.setString(1, customer.getFirstName());
             statement.setString(2, customer.getLastName());
             statement.setString(3, customer.getPhone());
@@ -91,7 +91,8 @@ public class CustomerDAO {
             String make = resultSet.getString("make");
             String model = resultSet.getString("model");
             String carNumber = resultSet.getString("car_number");
-            customerList.add(new Customer(firstName, lastName, phone, make, model, carNumber));
+            int payment = resultSet.getInt("payment");
+            customerList.add(new Customer(firstName, lastName, phone, make, model, carNumber, payment));
         }
     }
 }

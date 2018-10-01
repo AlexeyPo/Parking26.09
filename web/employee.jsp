@@ -9,22 +9,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp"/>
 <div class="container">
-    <table class="table table-bordered table-striped" border="1px">
-        <%--<jsp:useBean id="parkingBean" scope="request" class="beans.ParkingBean"/>--%>
-        <%--<c:out value="${parkingBean.parkings}"/>--%>
-        <tr>
-            <th>Фамилия</th>
-            <th>Имя</th>
-            <th>Телефон</th>
-        </tr>
-        <jsp:useBean id="userBean" scope="request" class="beans.UserBean"/>
-        <c:forEach var="userBean" items="${userBean.users}">
+    <div class="jumbotron col-xs-6 col-xs-offset-3">
+        <h2></h2>
+        <table class="table table-bordered table-striped" border="1px">
             <tr>
-                <td>${userBean.lastName}</td>
-                <td>${userBean.firstName}</td>
-                <td>${userBean.phone}</td>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Телефон</th>
             </tr>
-        </c:forEach>
-    </table>
+            <jsp:useBean id="userBean" scope="request" class="beans.UserBean"/>
+            <c:forEach var="userBean" items="${userBean.users}">
+                <tr>
+                    <td>${userBean.lastName}</td>
+                    <td>${userBean.firstName}</td>
+                    <td>${userBean.phone}</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
 </div>
 <jsp:include page="footer.jsp"/>

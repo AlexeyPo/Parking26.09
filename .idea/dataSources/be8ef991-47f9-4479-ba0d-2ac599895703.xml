@@ -1017,98 +1017,98 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="255" parent="244" name="PRIMARY">
+    <column id="255" parent="244" name="payment">
+      <Position>8</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="256" parent="244" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="256" parent="245" name="id">
+    <column id="257" parent="245" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="245" name="start_time">
+    <column id="258" parent="245" name="start_time">
       <Position>2</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="245" name="finish">
+    <column id="259" parent="245" name="finish">
       <Position>3</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="245" name="user_id">
+    <column id="260" parent="245" name="user_id">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="245" name="customer_id">
+    <column id="261" parent="245" name="customer_id">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="261" parent="245" name="fact_of_parking_ibfk_2">
+    <index id="262" parent="245" name="fact_of_parking_ibfk_2">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="262" parent="245" name="fact_of_parking_ibfk_3">
+    <index id="263" parent="245" name="fact_of_parking_ibfk_3">
       <ColNames>customer_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="263" parent="245" name="PRIMARY">
+    <key id="264" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="264" parent="245" name="fact_of_parking_ibfk_2">
+    <foreign-key id="265" parent="245" name="fact_of_parking_ibfk_2">
       <ColNames>user_id</ColNames>
       <RefSchemaName>parking</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="265" parent="245" name="fact_of_parking_ibfk_3">
+    <foreign-key id="266" parent="245" name="fact_of_parking_ibfk_3">
       <ColNames>customer_id</ColNames>
       <RefSchemaName>parking</RefSchemaName>
       <RefTableName>customer</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="266" parent="246" name="id">
+    <column id="267" parent="246" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="267" parent="246" name="parking_address">
+    <column id="268" parent="246" name="parking_address">
       <Position>2</Position>
       <DataType>varchar(450)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="246" name="quantity_of_parking">
+    <column id="269" parent="246" name="quantity_of_parking">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="246" name="quantity_of_occupied_parking">
+    <column id="270" parent="246" name="quantity_of_occupied_parking">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="246" name="rate_per_day">
+    <column id="271" parent="246" name="rate_per_day">
       <Position>5</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="271" parent="246" name="rate_per_month">
-      <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>

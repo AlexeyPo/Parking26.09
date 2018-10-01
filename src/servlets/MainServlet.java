@@ -63,7 +63,7 @@ public class MainServlet extends HttpServlet {
                 String password = request.getParameter("password");
                 user = loginBean.find(login, password);
                 if (user.getId() == 0) {
-                    request.setAttribute("message", "Login failed. User or password incorrect");
+                    request.setAttribute("message", "Логин или пароль введен не верно.");
                     request.getRequestDispatcher("/signin.jsp").forward(request, response);
                 } else if (user.getId() > 0) {
                     request.getSession().setAttribute("user", user);
@@ -82,6 +82,8 @@ public class MainServlet extends HttpServlet {
                 request.setAttribute("customerList", customerList);
                 request.getRequestDispatcher("/customer.jsp").forward(request, response);
             } else if ("payment".equals(request.getParameter("button2"))) {
+                List<Customer> customerList = customerDAO.getAllCustomers(user.getId());
+                request.setAttribute("customerList", customerList);
                 request.getRequestDispatcher("/payments.jsp").forward(request, response);
             } else if ("employee".equals(request.getParameter("button3"))) {
                 List<User> users = userDAO.findUsersById(user.getId());
@@ -147,17 +149,24 @@ public class MainServlet extends HttpServlet {
             }
         }
 
-        if(requestURI.endsWith("payment.html")) {
-            String carNumber = request.getParameter("carNumberP");
-            int payment = Integer.parseInt(request.getParameter("payment"));
-            Customer customer = new Customer(carNumber, payment);
-            if (customerDAO.isCarInDataBase(carNumber)) {
+// payment logic
+        if (requestURI.endsWith("payment.html")) {
+            String carNumber = request.getParameter("carNumberPayment");
 
-                getCustomerList(request, response);
-            } else {
-                request.setAttribute("messageP", "Номер тр. средства отсутствует в базе");
-                getCustomerList(request, response);
+            if ("toPay".equals(request.getParameter("toPay"))) {
+                if (factOfParkingDAO.isCarOnParking(carNumber)) {
+                    factOfParkingDAO.makePayment(factOfParkingDAO.countDaysOnParking(carNumber, user.getId()), factOfParkingDAO.findRate(carNumber), carNumber);
+                    factOfParkingDAO.stopParking(carNumber, user.getId());
+                    request.setAttribute("daysOnParking", factOfParkingDAO.countDaysOnParking(carNumber, user.getId()));
+                    request.setAttribute("rate", factOfParkingDAO.findRate(carNumber));
+                    getCustomerList(request, response);
+
+                } else {
+                    request.setAttribute("messagePayment", "Тр. средство отсутствует на стоянке");
+                    getCustomerList(request, response);
+                }
             }
+
         }
 
     }
@@ -166,8 +175,8 @@ public class MainServlet extends HttpServlet {
         List<Customer> customerListOnParking = customerDAO.getAllCarsOnParking(user.getId());
         request.setAttribute("customerListOnParking", customerListOnParking);
         request.getRequestDispatcher("/home.jsp").forward(request, response);
+        response.setIntHeader("", 3);
     }
 
-// payment logic
 
 }

@@ -6,23 +6,20 @@ public class Parking {
     private int quantityOfParking;
     private int quantityOfOccupiedParking;
     private int ratePerDay;
-    private int ratePerMonth;
 
-    public Parking(int id, String parkingAddress, int quantityOfParking, int quantityOfOccupiedParking, int ratePerDay, int ratePerMonth) {
+    public Parking(int id, String parkingAddress, int quantityOfParking, int quantityOfOccupiedParking, int ratePerDay) {
         this.id = id;
         this.parkingAddress = parkingAddress;
         this.quantityOfParking = quantityOfParking;
         this.quantityOfOccupiedParking = quantityOfOccupiedParking;
         this.ratePerDay = ratePerDay;
-        this.ratePerMonth = ratePerMonth;
     }
 
-    public Parking(String parkingAddress, int quantityOfParking, int quantityOfOccupiedParking, int ratePerDay, int ratePerMonth) {
+    public Parking(String parkingAddress, int quantityOfParking, int quantityOfOccupiedParking, int ratePerDay) {
         this.parkingAddress = parkingAddress;
         this.quantityOfParking = quantityOfParking;
         this.quantityOfOccupiedParking = quantityOfOccupiedParking;
         this.ratePerDay = ratePerDay;
-        this.ratePerMonth = ratePerMonth;
     }
 
     public Parking() {
@@ -75,13 +72,4 @@ public class Parking {
     public void setRatePerDay(int ratePerDay) {
         this.ratePerDay = ratePerDay;
     }
-
-    public int getRatePerMonth() {
-        return ratePerMonth;
-    }
-
-    public void setRatePerMonth(int ratePerMonth) {
-        this.ratePerMonth = ratePerMonth;
-    }
-
 }

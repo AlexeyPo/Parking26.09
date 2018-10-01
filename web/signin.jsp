@@ -30,16 +30,19 @@
 <body>
 
 <div class="container">
-    <h1>${message}</h1>
-    <form action="login.html" method="post" class="form-signin">
-        <h3 class="form-signin-heading">Введите логин и пароль</h3>
-        <label for="login" class="sr-only">Логин</label>
-        <input type="text" id="login" class="form-control" name="login" placeholder="Логин" required autofocus>
-        <label for="password" class="sr-only">Пароль</label>
-        <input type="password" id="password" class="form-control" name="password" placeholder="Пароль" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="button" value="signIn">Войти</button>
-    </form>
-
+    <div class="jumbotron col-xs-4 col-xs-offset-4">
+        <h3 style="color: #c9302c">${message}</h3>
+        <form action="login.html" method="post" class="form-signin">
+            <div class="form-group">
+            <h3 class="form-signin-heading">Введите логин и пароль</h3>
+            <label for="login" class="sr-only">Логин</label>
+            <input type="text" id="login" class="form-control" name="login" placeholder="Логин" required autofocus>
+            <label for="password" class="sr-only">Пароль</label>
+            <input type="password" id="password" class="form-control" name="password" placeholder="Пароль" required>
+            <button class="btn btn-primary btn-lg btn-block active" type="submit" name="button" value="signIn">Войти</button>
+            </div>
+        </form>
+    </div>
 </div> <!-- /container -->
 
 </body>
