@@ -30,7 +30,7 @@
 <body>
 <div class="container">
     <div class="jumbotron col-xs-4 col-xs-offset-4">
-        <h3 style="color: #c9302c">${message}</h3>
+        <h4 style="color: #c9302c">${message}</h4>
         <form action="login.html" method="post" class="form-signin">
             <div class="form-group">
                 <h3 class="form-signin-heading">Введите логин и пароль</h3>

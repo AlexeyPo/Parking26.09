@@ -83,6 +83,22 @@ public class CustomerDAO {
         return customerList;
     }
 
+    public List<Customer> getListOfPayments(int id) {
+        List<Customer> customerList = new ArrayList<>();
+        try (Connection connection = ds.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM customer " +
+                    "INNER JOIN fact_of_parking fop on customer.id = fop.customer_id INNER JOIN user u ON fop.user_id = u.id " +
+                    "INNER JOIN parkings p on u.parking_id = p.id WHERE p.id IN (SELECT parking_id FROM user WHERE id=?) " +
+                    "AND fop.finish > DATE(NOW()) GROUP BY customer_id");
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            getList(customerList, resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customerList;
+    }
+
     private void getList(List<Customer> customerList, ResultSet resultSet) throws SQLException {
         while (resultSet.next()) {
             String firstName = resultSet.getString("first_name");

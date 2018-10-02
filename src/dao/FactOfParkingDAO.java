@@ -33,7 +33,7 @@ public class FactOfParkingDAO {
     public void stopParking(String carNumber, int id) {
         try (Connection connection = ds.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("UPDATE fact_of_parking SET finish=CURRENT_TIMESTAMP(), user_id=? " +
-                    "WHERE start_time IS NOT null AND customer_id IN (SELECT id FROM customer WHERE car_number=?)");
+                    "WHERE start_time IS NOT null AND finish IS NULL AND customer_id IN (SELECT id FROM customer WHERE car_number=?)");
             statement.setInt(1, id);
             statement.setString(2, carNumber);
             statement.executeUpdate();

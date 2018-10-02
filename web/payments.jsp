@@ -10,24 +10,24 @@
 <jsp:include page="header.jsp"/>
 <div class="container">
     <div class="jumbotron col-xs-12">
-        <h3>Список всех клиентов</h3>
+        <h3>Список оплат по клиентам</h3>
         <table class="table table-bordered table-striped" border="1px">
             <tr>
+                <th>Платеж (грн)</th>
                 <th>Номер тр. средства</th>
                 <th>Марка тр. средства</th>
                 <th>Модель тр. средства</th>
                 <th>Фамилия</th>
                 <th>Имя</th>
-                <th>Платеж (грн)</th>
             </tr>
             <c:forEach var="customerList" items="${customerList}">
                 <tr>
+                    <td>${customerList.payment}</td>
                     <td>${customerList.carNumber}</td>
                     <td>${customerList.make}</td>
                     <td>${customerList.model}</td>
                     <td>${customerList.lastName}</td>
                     <td>${customerList.firstName}</td>
-                    <td>${customerList.payment}</td>
                 </tr>
             </c:forEach>
         </table>

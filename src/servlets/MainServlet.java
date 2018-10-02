@@ -31,12 +31,7 @@ public class MainServlet extends HttpServlet {
     @EJB
     FactOfParkingDAO factOfParkingDAO;
 
-    Customer customer;
-    User user;
-    String sessionId;
-    HttpSession session;
-    Parking parking;
-
+    private User user;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -49,14 +44,22 @@ public class MainServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
+
         if (requestURI.endsWith("/index.html") || requestURI.endsWith("/")) {
-            List<Parking> parkings = parkingDAO.findAllParking();
-            request.setAttribute("parkingBean", new ParkingBean(parkings));
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            HttpSession session = request.getSession();
+            if (session.getAttribute("user")==null){
+                List<Parking> parkings = parkingDAO.findAllParking();
+                request.setAttribute("parkingBean", new ParkingBean(parkings));
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("/home.jsp").forward(request, response);
+            }
         }
         if (requestURI.endsWith("/signin.html")) {
             request.getRequestDispatcher("/signin.jsp").forward(request, response);
         }
+
+
         if (requestURI.endsWith("/login.html")) {
             if ("signIn".equals(request.getParameter("button"))) {
                 String login = request.getParameter("login").trim();
@@ -66,8 +69,8 @@ public class MainServlet extends HttpServlet {
                     request.setAttribute("message", "Логин или пароль введен не верно.");
                     request.getRequestDispatcher("/signin.jsp").forward(request, response);
                 } else if (user.getId() > 0) {
-                    request.getSession().setAttribute("user", user);
-//                    sessionId = session.getId();
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user", user);
                     getCustomerList(request, response);
                 }
             }
@@ -82,7 +85,7 @@ public class MainServlet extends HttpServlet {
                 request.setAttribute("customerList", customerList);
                 request.getRequestDispatcher("/customer.jsp").forward(request, response);
             } else if ("payment".equals(request.getParameter("button2"))) {
-                List<Customer> customerList = customerDAO.getAllCustomers(user.getId());
+                List<Customer> customerList = customerDAO.getListOfPayments(user.getId());
                 request.setAttribute("customerList", customerList);
                 request.getRequestDispatcher("/payments.jsp").forward(request, response);
             } else if ("employee".equals(request.getParameter("button3"))) {
@@ -90,7 +93,8 @@ public class MainServlet extends HttpServlet {
                 request.setAttribute("userBean", new UserBean(users));
                 request.getRequestDispatcher("/employee.jsp").forward(request, response);
             } else if ("signOut".equals(request.getParameter("button4"))) {
-                request.getSession().setAttribute("user", new User());
+                HttpSession session = request.getSession();
+                session.removeAttribute("user");
                 request.getRequestDispatcher("/index.html").forward(request, response);
             }
         }
@@ -176,6 +180,5 @@ public class MainServlet extends HttpServlet {
         List<Customer> customerListOnParking = customerDAO.getAllCarsOnParking(user.getId());
         request.setAttribute("customerListOnParking", customerListOnParking);
         request.getRequestDispatcher("/home.jsp").forward(request, response);
-        response.setIntHeader("", 3);
     }
 }

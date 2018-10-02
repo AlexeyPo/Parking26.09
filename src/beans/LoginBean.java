@@ -15,7 +15,7 @@ public class LoginBean {
 
     public User find(String login, String password) {
         try (Connection connection = ds.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("select * from user where login = ? AND password = ?");
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM user WHERE login = ? AND password = ?");
             ps.setString(1, login);
             ps.setString(2, password);
             ResultSet resultSet = ps.executeQuery();
