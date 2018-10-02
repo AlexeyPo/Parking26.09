@@ -18,18 +18,16 @@
     <meta name="author" content="">
     <link rel="icon" href="<c:url value="/resources/images/favicon.ico"/>">
 
-    <title>Parking - Главная страница</title>
+    <title>Parking</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="<c:url value="/resources/css/sticky-footer-navbar.css"/>" rel="stylesheet">
-
 </head>
 
 <body>
-
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -51,13 +49,10 @@
 
 <!-- Begin page content -->
 <div class="container">
-
     <div class="col-xs-12">
         <div class="jumbotron col-xs-12 col-sm-6 col-md-offset-3">
-
             <div class="container">
                 <h3></h3>
-
                 <table class="table table-striped" style="background-color: #ffffff">
                     <tr>
                         <th>Адресс парковки</th>
@@ -77,7 +72,6 @@
             </div>
         </div>
     </div>
-
 </div>
 <jsp:include page="footer.jsp"/>
 

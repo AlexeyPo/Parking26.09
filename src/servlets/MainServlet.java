@@ -133,18 +133,21 @@ public class MainServlet extends HttpServlet {
 
 //add new Customer
         if (requestURI.endsWith("client.html")) {
-            String make = request.getParameter("carMake");
-            String model = request.getParameter("carModel");
-            String carNumber = request.getParameter("carNumber");
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
             String phone = request.getParameter("phone");
+            String make = request.getParameter("carMake");
+            String model = request.getParameter("carModel");
+            String carNumber = request.getParameter("carNumber");
 
             Customer customer = new Customer(firstName, lastName, phone, make, model, carNumber);
 
             if (!customerDAO.isCarInDataBase(carNumber)) {
                 customerDAO.addNewCustomer(customer);
                 factOfParkingDAO.startParking(carNumber, user.getId());
+                getCustomerList(request, response);
+            } else {
+                request.setAttribute("messageClient", "Клиент с таким номером уже зарегистрирован");
                 getCustomerList(request, response);
             }
         }
@@ -166,9 +169,7 @@ public class MainServlet extends HttpServlet {
                     getCustomerList(request, response);
                 }
             }
-
         }
-
     }
 
     private void getCustomerList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -177,6 +178,4 @@ public class MainServlet extends HttpServlet {
         request.getRequestDispatcher("/home.jsp").forward(request, response);
         response.setIntHeader("", 3);
     }
-
-
 }

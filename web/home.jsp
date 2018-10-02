@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp"/>
 <div class="container">
-
     <div class="jumbotron col-xs-12 col-xs-5">
         <h3>Контроль въезда/выезда клиентов</h3>
         <h4 style="color: #c9302c">${message}</h4>
@@ -28,6 +27,7 @@
             </div>
         </form>
     </div>
+
     <c:if test="${daysOnParking==0}">
         ${daysOnParking=1}
     </c:if>
@@ -35,7 +35,7 @@
 
         <div class="container col-xs-11 col-xs-offset-1">
             <h3>Оплата за парковку: ${daysOnParking * rate} грн</h3>
-            <h3 style="color: #c9302c">${messagePayment}</h3>
+            <h4 style="color: #c9302c">${messagePayment}</h4>
             <form action="payment.html" class="navbar-form navbar-left" method="post">
                 <table>
                     <tr>
@@ -57,11 +57,10 @@
     </div>
 
 
-
-
     <div class="jumbotron col-xs-12">
         <h3>Добавить нового клиента / с отметкой въезда</h3>
         <div class="container">
+            <h4 style="color: #c9302c">${messageClient}</h4>
             <form action="client.html" method="post">
                 <table class="table">
                     <tr>
@@ -89,6 +88,7 @@
         </div>
     </div>
 
+
     <div class="jumbotron col-xs-12">
         <h3>Транспортные средства находящиеся на парковке</h3>
         <table class="table table-bordered table-striped" border="1px">
@@ -100,7 +100,6 @@
                 <th>Имя</th>
                 <th>Телефон</th>
             </tr>
-
             <c:forEach var="customerListOnParking" items="${customerListOnParking}">
                 <tr>
                     <td>${customerListOnParking.carNumber}</td>
@@ -112,12 +111,8 @@
                 </tr>
             </c:forEach>
         </table>
-
     </div>
-
 </div>
-
-
 <jsp:include page="footer.jsp"/>
 
 

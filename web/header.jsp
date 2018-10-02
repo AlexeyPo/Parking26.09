@@ -55,8 +55,6 @@
                     <button class="btn btn-success navbar-right" type="submit" name="button4" value="signOut">Выйти</button>
                     <h5 class="navbar-text navbar-right">Смена: ${user.phone} ${user.firstName}</h5>
                 </div>
-
-
             </div><!--/.nav-collapse -->
         </form>
     </div>

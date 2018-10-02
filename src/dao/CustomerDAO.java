@@ -38,7 +38,7 @@ public class CustomerDAO {
     public void addNewCustomer(Customer customer) {
         try (Connection connection = ds.getConnection()) {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO customer(first_name," +
-                    " last_name, phone, make, model, car_number, payment) VALUES (?,?,?,?,?,?)");
+                    " last_name, phone, make, model, car_number) VALUES (?,?,?,?,?,?)");
             statement.setString(1, customer.getFirstName());
             statement.setString(2, customer.getLastName());
             statement.setString(3, customer.getPhone());

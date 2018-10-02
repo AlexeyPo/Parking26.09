@@ -21,7 +21,6 @@
                 <th>Имя</th>
                 <th>Телефон</th>
             </tr>
-
             <c:forEach var="customerList" items="${customerList}">
                 <tr>
                     <td>${customerList.carNumber}</td>
@@ -34,6 +33,5 @@
             </c:forEach>
         </table>
     </div>
-
 </div>
 <jsp:include page="footer.jsp"/>

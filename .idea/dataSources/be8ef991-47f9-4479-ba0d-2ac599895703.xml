@@ -1020,7 +1020,6 @@
     <column id="255" parent="244" name="payment">
       <Position>8</Position>
       <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="256" parent="244" name="PRIMARY">

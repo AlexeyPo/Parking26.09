@@ -68,12 +68,10 @@ public class FactOfParkingDAO {
             statement.setInt(1, id);
             statement.setString(2, carNumber);
             ResultSet resultSet = statement.executeQuery();
-
             while (resultSet.next()) {
                 daysOnParking = resultSet.getInt(1);
             }
             statement.close();
-
         } catch (SQLException e) {
             e.printStackTrace();
             return daysOnParking;
@@ -93,7 +91,6 @@ public class FactOfParkingDAO {
                 rate = rs.getInt(1);
             }
             statement.close();
-
         } catch (SQLException e) {
             e.printStackTrace();
             return rate;
@@ -117,7 +114,5 @@ public class FactOfParkingDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
-
 }

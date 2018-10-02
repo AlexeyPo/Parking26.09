@@ -20,7 +20,6 @@
                 <th>Имя</th>
                 <th>Платеж (грн)</th>
             </tr>
-
             <c:forEach var="customerList" items="${customerList}">
                 <tr>
                     <td>${customerList.carNumber}</td>
@@ -34,5 +33,4 @@
         </table>
     </div>
 </div>
-
 <jsp:include page="footer.jsp"/>

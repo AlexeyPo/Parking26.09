@@ -18,7 +18,7 @@
     <meta name="author" content="">
     <link rel="icon" href="<c:url value="/resources/images/favicon.ico"/>">
 
-    <title>Parking - Страница входа в систему</title>
+    <title>Parking</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
@@ -28,22 +28,22 @@
 </head>
 
 <body>
-
 <div class="container">
     <div class="jumbotron col-xs-4 col-xs-offset-4">
         <h3 style="color: #c9302c">${message}</h3>
         <form action="login.html" method="post" class="form-signin">
             <div class="form-group">
-            <h3 class="form-signin-heading">Введите логин и пароль</h3>
-            <label for="login" class="sr-only">Логин</label>
-            <input type="text" id="login" class="form-control" name="login" placeholder="Логин" required autofocus>
-            <label for="password" class="sr-only">Пароль</label>
-            <input type="password" id="password" class="form-control" name="password" placeholder="Пароль" required>
-            <button class="btn btn-primary btn-lg btn-block active" type="submit" name="button" value="signIn">Войти</button>
+                <h3 class="form-signin-heading">Введите логин и пароль</h3>
+                <label for="login" class="sr-only">Логин</label>
+                <input type="text" id="login" class="form-control" name="login" placeholder="Логин" required autofocus>
+                <label for="password" class="sr-only">Пароль</label>
+                <input type="password" id="password" class="form-control" name="password" placeholder="Пароль" required>
+                <button class="btn btn-primary btn-lg btn-block active" type="submit" name="button" value="signIn">
+                    Войти
+                </button>
             </div>
         </form>
     </div>
 </div> <!-- /container -->
-
 </body>
 </html>

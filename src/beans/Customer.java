@@ -36,11 +36,17 @@ public class Customer {
     }
 
     public Customer(String firstName, String lastName, String phone, String make, String model, String carNumber) {
-
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.phone=phone;
+        this.make=make;
+        this.model=model;
+        this.carNumber=carNumber;
     }
 
     public Customer(String carNumber, int payment) {
-
+        this.carNumber=carNumber;
+        this.payment=payment;
     }
 
     public int getId() {
