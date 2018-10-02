@@ -28,12 +28,11 @@
             </div>
         </form>
     </div>
-
+    <c:if test="${daysOnParking==0}">
+        ${daysOnParking=1}
+    </c:if>
     <div class="jumbotron col-xs-12 col-xs-5 col-xs-offset-2">
 
-        <c:if test="${daysOnParking==0}">
-            ${daysOnParking=1}
-        </c:if>
         <div class="container col-xs-11 col-xs-offset-1">
             <h3>Оплата за парковку: ${daysOnParking * rate} грн</h3>
             <h3 style="color: #c9302c">${messagePayment}</h3>
